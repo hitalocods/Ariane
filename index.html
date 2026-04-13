@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ariane Lier - Social Media Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Montserrat', sans-serif; }
+    .animate-fade { animation: fadeInUp 0.6s ease-out; }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .hover-lift { transition: transform 0.3s ease; }
+    .hover-lift:hover { transform: translateY(-8px); }
+    .img-scale { transition: transform 0.5s ease; }
+    .group:hover .img-scale { transform: scale(1.05); }
+    .overlay { transition: opacity 0.3s ease; }
+    .group:hover .overlay { opacity: 1 !important; }
+    html { scroll-behavior: smooth; }
+    @media (max-width: 640px) {
+      h1 { font-size: 2.5rem; line-height: 1.1; }
+      h2 { font-size: 2rem; }
+      .nav-menu { display: flex !important; flex-direction: column; gap: 1rem; position: absolute; top: 100%; left: 0; right: 0; background: white; padding: 1rem; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+      .hamburger { display: block; }
+      .grid-cols-mobile { grid-template-columns: 1fr; }
+      .gap-mobile-sm { gap: 1rem; }
+      .px-mobile { padding-left: 1rem; padding-right: 1rem; }
+    }
+  </style>
+</head>
+<body class="bg-white text-gray-900">
+  <!-- Mobile Hamburger -->
+  <button class="hamburger lg:hidden fixed top-6 right-6 z-60 p-2 rounded-lg hover:bg-pink-100">
+    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+    </svg>
+  </button>
+
+  <!-- Nav -->
+  <nav class="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-md border-b border-gray-200 h-20 flex items-center justify-between px-6">
+    <div class="text-2xl md:text-3xl font-black">
+      <span>Ariane</span><span class="text-pink-600">Lier</span>
+    </div>
+    <div class="hidden lg:flex space-x-8">
+      <a href="#campaigns" class="text-lg font-semibold hover:text-pink-600 transition-all py-2">Campanhas</a>
+      <a href="#results" class="text-lg font-semibold hover:text-pink-600 transition-all py-2">Resultados</a>
+      <a href="#contact" class="text-lg font-semibold hover:text-pink-600 transition-all py-2">Contato</a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="pt-24 pb-16 md:pt-32 md:pb-20 min-h-screen flex flex-col md:flex-row items-center justify-center">
+    <div class="w-full max-w-7xl mx-auto grid md:grid-cols-2 gap-8 md:gap-12 px-4 md:px-6">
+      <div class="space-y-6 md:space-y-8 text-center md:text-left animate-fade order-2 md:order-1">
+        <h1 class="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black leading-tight">
+          Suas Redes Sociais <span class="text-pink-600 bg-gradient-to-r from-pink-600 to-rose-500 bg-clip-text text-transparent">Crescendo</span>
+        </h1>
+        <p class="text-base md:text-xl text-gray-600 max-w-lg mx-auto md:mx-0 leading-relaxed">
+          Campanhas criativas e estratégicas que transformam seguidores em clientes reais. Números que impressionam.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start pt-4">
+          <a href="#campaigns" class="bg-pink-600 hover:bg-pink-700 text-white px-8 py-4 md:px-10 md:py-4 rounded-full font-bold text-base md:text-lg shadow-2xl hover:shadow-pink-500/25 hover-lift transition-all duration-300 inline-flex items-center justify-center w-full sm:w-auto">
+            Ver Portfólio 
+            <svg class="ml-2 w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M3 10h10a1 1 0 0 1 0 2H3a1 1 0 0 1 0-2z" clip-rule="evenodd"/>
+            </svg>
+          </a>
+          <button class="border-4 border-gray-900 hover:bg-gray-900 hover:text-white px-8 py-4 md:px-10 md:py-4 rounded-full font-bold text-base md:text-lg shadow-2xl hover:shadow-gray-500/25 hover-lift transition-all duration-300 w-full sm:w-auto">
+            Agendar Chamada
+          </button>
+        </div>
+      </div>
+      <div class="relative order-1 md:order-2 w-full h-64 md:h-96 lg:h-auto">
+        <img src="https://image2url.com/r2/default/images/1775941001431-5444ee36-5792-40bb-b57c-3bef5927f3f7.jpeg" alt="Portfolio" class="w-full h-full object-cover rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-500">
+        <div class="absolute inset-0 bg-gradient-to-br from-pink-600/10 rounded-3xl -m-2"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Campaigns -->
+  <section id="campaigns" class="py-20 md:py-32 bg-gradient-to-b from-gray-50 to-white">
+    <div class="max-w-7xl mx-auto px-4 md:px-6">
+      <div class="text-center mb-16 md:mb-20 animate-fade">
+        <h2 class="text-3xl md:text-5xl lg:text-6xl font-black mb-4 md:mb-6">Campanhas em Destaque</h2>
+        <div class="w-20 md:w-24 h-1 bg-gradient-to-r from-pink-600 to-rose-500 rounded-full mx-auto mb-4 md:mb-8"></div>
+        <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          Exemplos reais das campanhas que criamos com resultados comprovados através de métricas concretas.
+        </p>
+      </div>
+      
+      <div class="flex flex-wrap gap-3 md:gap-4 justify-center mb-12 md:mb-20">
+        <button data-filter="Todos" class="px-6 py-3 md:px-8 md:py-4 bg-pink-600 text-white font-bold rounded-full shadow-lg hover:shadow-xl hover-lift transition-all duration-300 text-base md:text-lg min-w-[100px]">Todos</button>
+        <button data-filter="Food" class="px-6 py-3 md:px-8 md:py-4 bg-white/80 hover:bg-white border-2 border-gray-200 font-bold rounded-full hover-lift shadow-md hover:shadow-lg transition-all duration-300 text-base md:text-lg min-w-[100px]">Food</button>
+        <button data-filter="E-commerce" class="px-6 py-3 md:px-8 md:py-4 bg-white/80 hover:bg-white border-2 border-gray-200 font-bold rounded-full hover-lift shadow-md hover:shadow-lg transition-all duration-300 text-base md:text-lg min-w-[100px]">E-commerce</button>
+        <button data-filter="Beleza" class="px-6 py-3 md:px-8 md:py-4 bg-white/80 hover:bg-white border-2 border-gray-200 font-bold rounded-full hover-lift shadow-md hover:shadow-lg transition-all duration-300 text-base md:text-lg min-w-[100px]">Beleza</button>
+        <button data-filter="Promoção" class="px-6 py-3 md:px-8 md:py-4 bg-white/80 hover:bg-white border-2 border-gray-200 font-bold rounded-full hover-lift shadow-md hover:shadow-lg transition-all duration-300 text-base md:text-lg min-w-[100px]">Promoção</button>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+        <a href="https://www.instagram.com/p/EXEMPLO_LINK_AQUI/" target="_blank" class="group block hover-lift rounded-2xl md:rounded-3xl overflow-hidden bg-white shadow-xl hover:shadow-2xl transition-all duration-500 animate-fade" data-category="Food">
+          <div class="h-48 md:h-80 overflow-hidden relative">
+            <img src="https://image2url.com/r2/default/images/1775941285741-cd240628-2dcf-45ac-a1aa-29cac67b1b47.jpeg" alt="Fogo e Massa" class="img-scale w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent overlay opacity-0 p-4 md:p-8 flex flex-col justify-end">
+              <div class="flex flex-col sm:flex-row gap-4 text-white text-sm md:text-lg font-bold">
+                <span>❤️ 2.4K</span>
+                <span>👁 45K</span>
+              </div>
+            </div>
+          </div>
+          <div class="p-4 md:p-8">
+            <h3 class="text-xl md:text-2xl font-black mb-1 md:mb-2 text-gray-900">Fogo e Massa</h3>
+            <p class="text-sm md:text-lg text-gray-600 font-semibold">Instagram Posts</p>
+          </div>
+        </a>
+
+        <!-- Card 2 E-commerce -->
+        <a href="#" class="group block hover-lift rounded-2xl md:rounded-3xl overflow-hidden bg-white shadow-xl hover:shadow-2xl transition-all duration-500 animate-fade" data-category="E-commerce" style="animation-delay: 0.1s;">
+          <div class="h-48 md:h-80 overflow-hidden relative">
+            <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663496206173/9qTMXioaHEXdf5Rnp7fY7r/instagram-post-ecommerce-7geRLB9MYZXfEWfwp8sFck.webp" alt="E-commerce" class="img-scale w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent overlay opacity-0 p-4 md:p-8 flex flex-col justify-end">
+              <div class="flex flex-col sm:flex-row gap-4 text-white text-sm md:text-lg font-bold">
+                <span>❤️ 5.2K</span>
+                <span>👁 78K</span>
+              </div>
+            </div>
+          </div>
+          <div class="p-4 md:p-8">
+            <h3 class="text-xl md:text-2xl font-black mb-1 md:mb-2 text-gray-900">E-commerce Carousel</h3>
+            <p class="text-sm md:text-lg text-gray-600 font-semibold">Instagram Carousel</p>
+          </div>
+        </a>
+
+        <!-- Card 3 Promoção -->
+        <a href="#" class="group block hover-lift rounded-2xl md:rounded-3xl overflow-hidden bg-white shadow-xl hover:shadow-2xl transition-all duration-500 animate-fade" data-category="Promoção" style="animation-delay: 0.2s;">
+          <div class="h-48 md:h-80 overflow-hidden relative">
+            <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663496206173/9qTMXioaHEXdf5Rnp7fY7r/instagram-story-promo-ZotWX9EKtgFjR4HCLLM3yS.webp" alt="Promo" class="img-scale w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent overlay opacity-0 p-4 md:p-8 flex flex-col justify-end">
+              <div class="flex flex-col sm:flex-row gap-4 text-white text-sm md:text-lg font-bold">
+                <span>❤️ 8.9K</span>
+                <span>👁 125K</span>
+              </div>
+            </div>
+          </div>
+          <div class="p-4 md:p-8">
+            <h3 class="text-xl md:text-2xl font-black mb-1 md:mb-2 text-gray-900">Promotional Story</h3>
+            <p class="text-sm md:text-lg text-gray-600 font-semibold">Instagram Story</p>
+          </div>
+        </a>
+
+        <!-- Card 4 Beleza -->
+        <a href="#" class="group block hover-lift rounded-2xl md:rounded-3xl overflow-hidden bg-white shadow-xl hover:shadow-2xl transition-all duration-500 animate-fade" data-category="Beleza" style="animation-delay: 0.3s;">
+          <div class="h-48 md:h-80 overflow-hidden relative">
+            <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663496206173/9qTMXioaHEXdf5Rnp7fY7r/instagram-post-beauty-ap9yTpRbepVaNshQu58KLy.webp" alt="Beauty" class="img-scale w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent overlay opacity-0 p-4 md:p-8 flex flex-col justify-end">
+              <div class="flex flex-col sm:flex-row gap-4 text-white text-sm md:text-lg font-bold">
+                <span>❤️ 3.8K</span>
+                <span>👁 62K</span>
+              </div>
+            </div>
+          </div>
+          <div class="p-4 md:p-8">
+            <h3 class="text-xl md:text-2xl font-black mb-1 md:mb-2 text-gray-900">Beauty Flat-lay</h3>
+            <p class="text-sm md:text-lg text-gray-600 font-semibold">Instagram Post</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Results -->
+  <section id="results" class="py-20 md:py-32 bg-white">
+    <div class="max-w-7xl mx-auto px-4 md:px-6">
+      <div class="text-center mb-16 md:mb-20 animate-fade">
+        <h2 class="text-3xl md:text-5xl lg:text-6xl font-black mb-4 md:mb-6">Resultados Comprovados</h2>
+        <div class="w-20 md:w-24 h-1 bg-gradient-to-r from-pink-600 to-rose-500 rounded-full mx-auto mb-4 md:mb-8"></div>
+        <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
+          Crescimento real que entregamos para nossos clientes
+        </p>
+      </div>
+      
+      <div class="grid md:grid-cols-2 gap-8 md:gap-12">
+        <div class="bg-gradient-to-br from-pink-50 to-rose-50 p-8 md:p-12 rounded-3xl border-4 border-pink-100 hover:border-pink-300 transition-all duration-500 animate-fade">
+          <h3 class="text-2xl md:text-3xl font-black mb-4 md:mb-6">Fashion Store</h3>
+          <div class="text-3xl md:text-4xl font-black text-gray-500 mb-6 md:mb-8">5K → 45K</div>
+          <div class="text-center py-6 md:py-8 mb-6 md:mb-8">
+            <svg class="w-12 h-12 md:w-16 md:h-16 text-green-500 mx-auto mb-4" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+            </svg>
+            <div class="text-xl md:text-2xl font-black text-green-600">+800%</div>
+            <p class="text-gray-600 text-sm md:text-base">Seguidores - 6 meses</p>
+          </div>
+        </div>
+        <!-- Adicionar outros cards de resultado com mesmo padrão -->
+        <div class="bg-gradient-to-br from-pink-50 to-rose-50 p-8 md:p-12 rounded-3xl border-4 border-pink-100 hover:border-pink-300 transition-all duration-500 animate-fade" style="animation-delay: 0.2s;">
+          <h3 class="text-2xl md:text-3xl font-black mb-4 md:mb-6">Beauty Brand</h3>
+          <div class="text-3xl md:text-4xl font-black text-gray-500 mb-6 md:mb-8">2% → 12%</div>
+          <div class="text-center py-6 md:py-8 mb-6 md:mb-8">
+            <svg class="w-12 h-12 md:w-16 md:h-16 text-green-500 mx-auto mb-4" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+            </svg>
+            <div class="text-xl md:text-2xl font-black text-green-600">+500%</div>
+            <p class="text-gray-600 text-sm md:text-base">Engajamento - 4 meses</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="py-20 md:py-32 bg-gradient-to-b from-pink-50 to-rose-50">
+    <div class="max-w-2xl mx-auto px-4 md:px-6 text-center">
+      <h2 class="text-4xl md:text-6xl font-black mb-6 md:mb-8 animate-fade">Vamos Crescer Juntos?</h2>
+      <p class="text-lg md:text-xl text-gray-600 mb-12 md:mb-16 max-w-lg mx-auto leading-relaxed">
+        Entre em contato para discutir sua próxima campanha de redes sociais
+      </p>
+      <form id="contactForm" class="space-y-6 md:space-y-8 max-w-2xl mx-auto">
+        <input type="text" placeholder="Seu nome *" required class="w-full px-6 md:px-8 py-5 md:py-6 text-base md:text-lg rounded-2xl border-2 border-gray-200 focus:border-pink-600 focus:ring-4 focus:ring-pink-200/50 outline-none transition-all duration-300 shadow-lg">
+        <input type="email" placeholder="seu@email.com *" required class="w-full px-6 md:px-8 py-5 md:py-6 text-base md:text-lg rounded-2xl border-2 border-gray-200 focus:border-pink-600 focus:ring-4 focus:ring-pink-200/50 outline-none transition-all duration-300 shadow-lg">
+        <textarea placeholder="Sua mensagem *" rows="5" required class="w-full px-6 md:px-8 py-5 md:py-6 text-base md:text-lg rounded-2xl border-2 border-gray-200 focus:border-pink-600 focus:ring-4 focus:ring-pink-200/50 outline-none transition-all duration-300 resize-vertical shadow-lg min-h-[120px]"></textarea>
+        <button type="submit" class="w-full bg-gradient-to-r from-pink-600 to-rose-500 hover:from-pink-700 hover:to-rose-600 text-white px-8 md:px-12 py-6 md:py-8 rounded-2xl font-black text-lg md:text-xl shadow-2xl hover:shadow-3xl hover-lift transition-all duration-300">
+          Enviar Mensagem
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <footer class="bg-gray-900 text-white py-8 md:py-12 text-center">
+    <div class="max-w-4xl mx-auto px-4 md:px-6">
+      <p class="text-base md:text-lg">&copy; 2026 Ariane Lier. Todos os direitos reservados | Feito com HTML/CSS/JS puro</p>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile Menu Toggle
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.flex.space-x-8') || document.querySelector('nav div:last-child');
+    hamburger?.addEventListener('click', () => {
+      navLinks?.classList.toggle('nav-menu');
+    });
+
+    // Filter campaigns
+    document.addEventListener('DOMContentLoaded', () => {
+      const buttons = document.querySelectorAll('[data-filter]');
+      const cards = document.querySelectorAll('[data-category]');
+      
+      buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const filter = btn.dataset.filter;
+          
+          buttons.forEach(b => b.classList.remove('bg-gradient-to-r', 'from-pink-600', 'to-rose-500', 'shadow-xl'));
+          btn.classList.add('bg-gradient-to-r', 'from-pink-600', 'to-rose-500', 'shadow-xl');
+          
+          cards.forEach(card => {
+            if (filter === 'Todos' || card.dataset.category === filter) {
+              card.style.display = 'block';
+              card.classList.add('animate-fade');
+            } else {
+              card.style.display = 'none';
+            }
+          });
+        });
+      });
+
+      // Form submit
+      const form = document.getElementById('contactForm');
+      form?.addEventListener('submit', e => {
+        e.preventDefault();
+        const btn = e.target.querySelector('button[type="submit"]');
+        const original = btn.textContent;
+        btn.textContent = '✓ Mensagem enviada!';
+        btn.disabled = true;
+        btn.classList.add('!bg-green-600', '!shadow-green-500/25');
+        setTimeout(() => {
+          btn.textContent = original;
+          btn.disabled = false;
+          btn.classList.remove('!bg-green-600', '!shadow-green-500/25');
+          e.target.reset();
+        }, 3000);
+      });
+
+      // Smooth scroll
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', e => {
+          e.preventDefault();
+          const target = document.querySelector(anchor.getAttribute('href'));
+          target?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          // Close mobile menu
+          const navLinks = document.querySelector('.nav-menu');
+          navLinks?.classList.remove('nav-menu');
+        });
+      });
+
+      // Scroll animations
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate-fade');
+          }
+        });
+      }, { threshold: 0.1 });
+      
+      document.querySelectorAll('section, [class*="animate"]').forEach(el => observer.observe(el));
+    });
+  </script>
+</body>
+</html>
