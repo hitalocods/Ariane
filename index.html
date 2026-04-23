@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ariane Lier — Social Media</title>
+  <title>Ariane Lierry — Social Media</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -492,113 +492,197 @@
     }
     .card-type { font-size: 0.82rem; color: var(--gray); font-weight: 500; }
 
-    /* ── RESULTS ── */
-    #results {
+    /* ── STORIES SECTION ── */
+    #stories {
       background: var(--dark);
       color: white;
     }
 
-    #results .section-title { color: white; }
-    #results .section-sub { color: rgba(255,255,255,0.5); }
+    #stories .section-title { color: white; }
+    #stories .section-sub { color: rgba(255,255,255,0.5); }
 
-    .results-grid {
+    .stories-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: repeat(3, 1fr);
       gap: 2rem;
       margin-top: 4rem;
     }
 
-    .result-card {
+    .story-card {
       background: rgba(255,255,255,0.04);
       border: 1px solid rgba(255,255,255,0.1);
       border-radius: 28px;
       overflow: hidden;
-      transition: border-color 0.3s;
-    }
-    .result-card:hover { border-color: var(--pink); }
-
-    .result-card-top {
-      padding: 2.5rem 2.5rem 1.5rem;
+      transition: all 0.3s;
     }
 
-    .result-brand {
-      font-size: 0.75rem;
+    .story-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--pink);
+    }
+
+    .story-video {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 9 / 16;
+      overflow: hidden;
+      background: #000;
+    }
+
+    .story-video video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .story-play-btn {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 60px;
+      height: 60px;
+      background: rgba(232,51,109,0.9);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s;
+      opacity: 0.9;
+      z-index: 2;
+    }
+
+    .story-play-btn:hover {
+      transform: translate(-50%, -50%) scale(1.1);
+      background: var(--pink);
+      opacity: 1;
+    }
+
+    .story-play-btn svg {
+      margin-left: 4px;
+    }
+
+    .story-info {
+      padding: 1.5rem;
+    }
+
+    .story-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
       font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--rose);
+      color: white;
       margin-bottom: 0.5rem;
     }
 
-    .result-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.7rem;
-      font-weight: 900;
-      color: white;
-      margin-bottom: 1.5rem;
+    .story-description {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.5;
+      margin-bottom: 0.8rem;
     }
 
-    .result-nums {
-      display: flex;
-      gap: 2rem;
-      flex-wrap: wrap;
-    }
-
-    .result-num {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .result-num strong {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.2rem;
-      font-weight: 900;
-      color: var(--rose);
-      line-height: 1;
-    }
-
-    .result-num span {
-      font-size: 0.8rem;
-      color: rgba(255,255,255,0.4);
-      font-weight: 500;
-      margin-top: 0.3rem;
-    }
-
-    .result-img {
-      width: 100%;
-      height: 220px;
-      object-fit: cover;
-      display: block;
-    }
-
-    .result-footer {
-      padding: 1.2rem 2.5rem;
+    .story-meta {
       display: flex;
       align-items: center;
-      gap: 0.6rem;
-      border-top: 1px solid rgba(255,255,255,0.06);
+      gap: 0.8rem;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
     }
 
-    .result-badge {
+    .story-badge {
       display: inline-flex;
       align-items: center;
-      gap: 0.4rem;
+      gap: 0.3rem;
       background: rgba(232,51,109,0.15);
       color: var(--rose);
-      font-size: 0.8rem;
+      font-size: 0.7rem;
       font-weight: 700;
-      padding: 0.4rem 0.9rem;
+      padding: 0.3rem 0.7rem;
       border-radius: 100px;
     }
 
-    .result-badge::before {
-      content: '▲';
-      font-size: 0.6rem;
+    .story-views {
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.3);
     }
 
-    .result-period {
-      font-size: 0.8rem;
-      color: rgba(255,255,255,0.3);
+    /* Botão do Instagram da loja */
+    .story-store-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 0.8rem;
+      padding: 0.5rem 1rem;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 100px;
+      font-size: 0.75rem;
+      color: var(--rose);
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s;
+    }
+
+    .story-store-link:hover {
+      background: var(--pink);
+      color: white;
+      border-color: var(--pink);
+      transform: translateX(4px);
+    }
+
+    .story-store-link svg {
+      transition: transform 0.3s;
+    }
+
+    .story-store-link:hover svg {
+      transform: translateX(3px);
+    }
+
+    /* Modal para ver story em tamanho real */
+    .story-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.95);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .story-modal.active {
+      display: flex;
+    }
+
+    .story-modal-content {
+      position: relative;
+      max-width: 90%;
+      max-height: 90%;
+    }
+
+    .story-modal-content video {
+      width: auto;
+      max-width: 100%;
+      max-height: 90vh;
+      border-radius: 20px;
+      box-shadow: 0 0 50px rgba(0,0,0,0.5);
+    }
+
+    .close-modal {
+      position: absolute;
+      top: -40px;
+      right: 0;
+      color: white;
+      font-size: 2rem;
+      cursor: pointer;
+      background: none;
+      border: none;
+      width: 40px;
+      height: 40px;
     }
 
     /* ── CONTACT ── */
@@ -647,36 +731,25 @@
       border: 2px solid;
     }
 
-    .contact-link.whatsapp {
+    .contact-link.instagram {
       background: var(--pink);
       border-color: var(--pink);
       color: white;
       box-shadow: 0 4px 20px rgba(232,51,109,0.25);
     }
-    .contact-link.whatsapp:hover {
+    .contact-link.instagram:hover {
       transform: translateY(-3px);
       box-shadow: 0 12px 32px rgba(232,51,109,0.4);
     }
 
-    .contact-link.instagram {
+    .contact-link.email {
       background: white;
       border-color: var(--blush);
       color: var(--dark);
     }
-    .contact-link.instagram:hover {
+    .contact-link.email:hover {
       border-color: var(--pink);
       color: var(--pink);
-      transform: translateY(-3px);
-    }
-
-    .contact-link.email {
-      background: transparent;
-      border-color: rgba(26,10,18,0.15);
-      color: var(--mid);
-    }
-    .contact-link.email:hover {
-      border-color: var(--dark);
-      color: var(--dark);
       transform: translateY(-3px);
     }
 
@@ -692,7 +765,23 @@
     }
 
     footer .logo { color: white; }
-    footer p { font-size: 0.82rem; color: rgba(255,255,255,0.3); }
+    
+    footer .credit {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.3);
+    }
+    
+    footer .credit a {
+      color: var(--rose);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+    
+    footer .credit a:hover {
+      color: white;
+      text-decoration: underline;
+    }
 
     /* ── ANIMATIONS ── */
     @keyframes fadeUp {
@@ -713,6 +802,7 @@
     /* ── RESPONSIVE ── */
     @media (max-width: 1024px) {
       .cards-grid { grid-template-columns: repeat(2, 1fr); }
+      .stories-grid { grid-template-columns: repeat(2, 1fr); }
     }
 
     @media (max-width: 768px) {
@@ -725,7 +815,7 @@
       .hero-badge { bottom: 1.5rem; right: 1rem; }
       .nav-links { display: none; }
       .hamburger { display: flex; }
-      .results-grid { grid-template-columns: 1fr; }
+      .stories-grid { grid-template-columns: 1fr; }
       .cards-grid { grid-template-columns: 1fr 1fr; gap: 1rem; }
       section { padding: 4.5rem 1.5rem; }
       .campaigns-header { flex-direction: column; align-items: flex-start; }
@@ -742,11 +832,11 @@
 
 <!-- NAV -->
 <nav>
-  <div class="logo">Ariane<span>Lier</span></div>
+  <div class="logo">Ariane<span>Lierry</span></div>
 
   <ul class="nav-links">
     <li><a href="#campaigns">Campanhas</a></li>
-    <li><a href="#results">Resultados</a></li>
+    <li><a href="#stories">Stories</a></li>
     <li><a href="#contact" class="nav-cta">Agendar Chamada</a></li>
   </ul>
 
@@ -757,7 +847,7 @@
 
 <div class="mobile-menu" id="mobileMenu">
   <a href="#campaigns">Campanhas</a>
-  <a href="#results">Resultados</a>
+  <a href="#stories">Stories</a>
   <a href="#contact">Contato</a>
 </div>
 
@@ -794,7 +884,7 @@
 
   <div class="hero-visual">
     <img
-      src="https://image2url.com/r2/default/images/1775941001431-5444ee36-5792-40bb-b57c-3bef5927f3f7.jpeg"
+      src="./img/ari.jpg"
       alt="Social Media Marketing"
     >
     <div class="hero-badge">
@@ -845,8 +935,7 @@
   </div>
 
   <div class="cards-grid" id="cardsGrid">
-
-    <a href="#" class="card reveal" data-category="Food">
+    <div class="card reveal" data-category="Food">
       <div class="card-img">
         <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=800&auto=format&fit=crop" alt="Food">
         <div class="card-category">Food</div>
@@ -859,11 +948,11 @@
         <div class="card-title">Fogo e Massa</div>
         <div class="card-type">Instagram Post</div>
       </div>
-    </a>
+    </div>
 
-    <a href="#" class="card reveal" data-category="E-commerce" style="transition-delay:0.1s">
+    <div class="card reveal" data-category="E-commerce" style="transition-delay:0.1s">
       <div class="card-img">
-        <img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?q=80&w=800&auto=format&fit=crop" alt="Fashion">
+        <img src="./img/Lohan.jpeg" alt="Fashion">
         <div class="card-category">E-commerce</div>
         <div class="card-overlay">
           <span class="card-stat">❤️ 5.2K</span>
@@ -871,12 +960,12 @@
         </div>
       </div>
       <div class="card-body">
-        <div class="card-title">Fashion Store</div>
+        <div class="card-title">Lohan Informatica</div>
         <div class="card-type">Instagram Carousel</div>
       </div>
-    </a>
+    </div>
 
-    <a href="#" class="card reveal" data-category="Promoção" style="transition-delay:0.2s">
+    <div class="card reveal" data-category="Promoção" style="transition-delay:0.2s">
       <div class="card-img">
         <img src="https://images.unsplash.com/photo-1556740749-887f6717d7e4?q=80&w=800&auto=format&fit=crop" alt="Promoção">
         <div class="card-category">Promoção</div>
@@ -889,9 +978,9 @@
         <div class="card-title">Promo Launch</div>
         <div class="card-type">Instagram Story</div>
       </div>
-    </a>
+    </div>
 
-    <a href="#" class="card reveal" data-category="Beleza" style="transition-delay:0.3s">
+    <div class="card reveal" data-category="Beleza" style="transition-delay:0.3s">
       <div class="card-img">
         <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=800&auto=format&fit=crop" alt="Beauty">
         <div class="card-category">Beleza</div>
@@ -904,67 +993,115 @@
         <div class="card-title">Beauty Flat-lay</div>
         <div class="card-type">Instagram Post</div>
       </div>
-    </a>
-
+    </div>
   </div>
 </section>
 
-<!-- RESULTS -->
-<section id="results">
+<!-- STORIES SECTION -->
+<!-- STORIES SECTION -->
+<section id="stories">
   <div class="reveal">
-    <div class="section-label">Resultados</div>
-    <h2 class="section-title">Crescimento <em>real</em> dos clientes</h2>
-    <p class="section-sub">Métricas que mostram a evolução concreta das marcas atendidas.</p>
+    <div class="section-label">Stories</div>
+    <h2 class="section-title">Conteúdos que <em>engajam</em> de verdade</h2>
+    <p class="section-sub">Stories criativos que geram conexão, interação e resultado.</p>
   </div>
 
-  <div class="results-grid">
-
-    <div class="result-card reveal">
-      <div class="result-card-top">
-        <div class="result-brand">Case 01</div>
-        <div class="result-title">Fashion Store</div>
-        <div class="result-nums">
-          <div class="result-num">
-            <strong>5K</strong>
-            <span>Seguidores antes</span>
-          </div>
-          <div class="result-num">
-            <strong>45K</strong>
-            <span>Seguidores depois</span>
-          </div>
+  <div class="stories-grid">
+    <!-- Story 1 -->
+    <div class="story-card reveal" data-video="videos/StoryLohan.mp4">
+      <div class="story-video">
+        <video poster="img/Lohan.jpg">
+          <source src="videos/StoryLohan.mp4" type="video/mp4">
+        </video>
+        <div class="story-play-btn">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
+            <polygon points="5 3 19 12 5 21 5 3" fill="white"/>
+          </svg>
         </div>
       </div>
-      <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=900&auto=format&fit=crop" alt="Analytics" class="result-img">
-      <div class="result-footer">
-        <span class="result-badge">+800%</span>
-        <span class="result-period">em 6 meses</span>
+      <div class="story-info">
+        <div class="story-title">Lohan Informática</div>
+        <div class="story-description">Serviços e produtos de qualidade</div>
+        <div class="story-meta">
+          <span class="story-badge">🎯 +45% engajamento</span>
+          <span class="story-views">👁 12.5K visualizações</span>
+        </div>
+        <a href="https://www.instagram.com/arianelieryssm/" target="_blank" class="story-store-link">
+          Ver perfil da loja 
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M7 17L17 7M17 7H7M17 7V17"/>
+          </svg>
+        </a>
       </div>
     </div>
 
-    <div class="result-card reveal" style="transition-delay:0.15s">
-      <div class="result-card-top">
-        <div class="result-brand">Case 02</div>
-        <div class="result-title">Beauty Brand</div>
-        <div class="result-nums">
-          <div class="result-num">
-            <strong>2%</strong>
-            <span>Engajamento antes</span>
-          </div>
-          <div class="result-num">
-            <strong>12%</strong>
-            <span>Engajamento depois</span>
-          </div>
+    <!-- Story 2 -->
+    <div class="story-card reveal" data-video="videos/StoryLohan.mp4">
+      <div class="story-video">
+        <video poster="img/Lohan.jpg">
+          <source src="videos/StoryLohan.mp4" type="video/mp4">
+        </video>
+        <div class="story-play-btn">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
+            <polygon points="5 3 19 12 5 21 5 3" fill="white"/>
+          </svg>
         </div>
       </div>
-      <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=900&auto=format&fit=crop" alt="Analytics" class="result-img">
-      <div class="result-footer">
-        <span class="result-badge">+500%</span>
-        <span class="result-period">em 4 meses</span>
+      <div class="story-info">
+        <div class="story-title">Promoção Especial</div>
+        <div class="story-description">Descontos imperdíveis por tempo limitado</div>
+        <div class="story-meta">
+          <span class="story-badge">⚡ +156% cliques</span>
+          <span class="story-views">👁 8.3K visualizações</span>
+        </div>
+        <a href="https://www.instagram.com/arianelieryssm/" target="_blank" class="story-store-link">
+          Ver perfil da loja 
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M7 17L17 7M17 7H7M17 7V17"/>
+          </svg>
+        </a>
       </div>
     </div>
 
+    <!-- Story 3 -->
+    <div class="story-card reveal" data-video="videos/StoryLohan.mp4">
+      <div class="story-video">
+        <video poster="img/Lohan.jpg">
+          <source src="videos/StoryLohan.mp4" type="video/mp4">
+        </video>
+        <div class="story-play-btn">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
+            <polygon points="5 3 19 12 5 21 5 3" fill="white"/>
+          </svg>
+        </div>
+      </div>
+      <div class="story-info">
+        <div class="story-title">Atendimento Premium</div>
+        <div class="story-description">Suporte especializado e entrega rápida</div>
+        <div class="story-meta">
+          <span class="story-badge">📈 +82% visualizações</span>
+          <span class="story-views">👁 22.1K visualizações</span>
+        </div>
+        <a href="https://www.instagram.com/arianelieryssm/" target="_blank" class="story-store-link">
+          Ver perfil da loja 
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M7 17L17 7M17 7H7M17 7V17"/>
+          </svg>
+        </a>
+      </div>
+    </div>
   </div>
 </section>
+
+<!-- Modal para ver story em tamanho real -->
+<div class="story-modal" id="storyModal">
+  <div class="story-modal-content">
+    <button class="close-modal">&times;</button>
+    <video id="modalVideo" controls autoplay>
+      <source src="" type="video/mp4">
+    </video>
+  </div>
+</div>
 
 <!-- CONTACT -->
 <section id="contact">
@@ -976,21 +1113,14 @@
     </p>
 
     <div class="contact-links">
-      <a href="https://wa.me/5511999999999" target="_blank" class="contact-link whatsapp">
-        <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M20 3.5A10 10 0 003.5 20l-1 3.5 3.6-1A10 10 0 1020 3.5zm-8 15a8 8 0 01-4.2-1.2l-.3-.2-2.1.6.6-2.1-.2-.3A8 8 0 1112 18.5zm4.5-5.6c-.2-.1-1.2-.6-1.4-.7-.2-.1-.4-.1-.5.1-.1.2-.6.7-.7.8-.1.1-.3.2-.5.1-.2-.1-.9-.3-1.7-1-.6-.5-1-1.2-1.1-1.4-.1-.2 0-.3.1-.4.1-.1.2-.3.3-.4.1-.1.1-.2.2-.3.1-.1 0-.2 0-.3s-.5-1.3-.7-1.7c-.2-.4-.4-.3-.5-.3h-.4c-.1 0-.3.1-.4.2s-.6.6-.6 1.5.6 1.8.7 1.9c.1.1 1.2 2 3 2.8 1.8.8 1.8.5 2.1.5.3 0 1.2-.5 1.3-1 .2-.5.2-.9.1-1z"/>
-        </svg>
-        WhatsApp
-      </a>
-
-      <a href="https://instagram.com/" target="_blank" class="contact-link instagram">
+      <a href="https://www.instagram.com/arianelieryssm/" target="_blank" class="contact-link instagram">
         <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
           <path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm0 2h10c1.7 0 3 1.3 3 3v10c0 1.7-1.3 3-3 3H7c-1.7 0-3-1.3-3-3V7c0-1.7 1.3-3 3-3zm5 3a5 5 0 100 10A5 5 0 0012 7zm0 2a3 3 0 110 6 3 3 0 010-6zm4.5-.5a1 1 0 100 2 1 1 0 000-2z"/>
         </svg>
         Instagram
       </a>
 
-      <a href="mailto:seuemail@email.com" class="contact-link email">
+      <a href="mailto:arianelieryp@gmail.com" class="contact-link email">
         <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
           <path d="M2 6a2 2 0 012-2h16a2 2 0 012 2v12a2 2 0 01-2 2H4a2 2 0 01-2-2V6zm2 0l8 5 8-5H4zm16 2.2l-8 5-8-5V18h16V8.2z"/>
         </svg>
@@ -1002,8 +1132,10 @@
 
 <!-- FOOTER -->
 <footer>
-  <div class="logo">Ariane<span>Lier</span></div>
-  <p>© 2026 Ariane Lier · Todos os direitos reservados</p>
+  <div class="logo">Ariane<span>Lierry</span></div>
+  <div class="credit">
+    Desenvolvido por <a href="https://www.instagram.com/hitalolacerda" target="_blank">Hitalo Lacerda</a>
+  </div>
 </footer>
 
 <script>
@@ -1031,6 +1163,37 @@
         card.style.display = match ? 'block' : 'none';
       });
     });
+  });
+
+  // Stories video play functionality
+  const storyCards = document.querySelectorAll('.story-card');
+  const modal = document.getElementById('storyModal');
+  const modalVideo = document.getElementById('modalVideo');
+  const closeModal = document.querySelector('.close-modal');
+
+  storyCards.forEach(card => {
+    const playBtn = card.querySelector('.story-play-btn');
+    const video = card.querySelector('video');
+    const videoSrc = video.querySelector('source').src;
+
+    playBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      modalVideo.querySelector('source').src = videoSrc;
+      modalVideo.load();
+      modal.classList.add('active');
+      modalVideo.play();
+    });
+  });
+
+  function closeModalFunc() {
+    modal.classList.remove('active');
+    modalVideo.pause();
+    modalVideo.currentTime = 0;
+  }
+
+  closeModal.addEventListener('click', closeModalFunc);
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) closeModalFunc();
   });
 
   // Scroll reveal
