@@ -993,6 +993,490 @@
         padding: 0.5rem 0.95rem;
       }
     }
+
+    /* ══════════════════════════════════════════════════════════
+       CINEMATIC EYE-REVEAL HERO SECTION (AWWWARDS / APPLE STYLE)
+       ══════════════════════════════════════════════════════════ */
+    
+    /* Nav styling during cinematic section */
+    nav.nav-cinematic {
+      background: rgba(14, 6, 12, 0.6) !important;
+      backdrop-filter: blur(24px) saturate(180%) !important;
+      -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+      transition: background 0.4s ease, border-color 0.4s ease;
+    }
+    nav.nav-cinematic .logo {
+      color: #FFFFFF !important;
+    }
+    nav.nav-cinematic .logo span {
+      color: var(--rose) !important;
+    }
+    nav.nav-cinematic .nav-links a {
+      color: rgba(255, 255, 255, 0.85) !important;
+    }
+    nav.nav-cinematic .nav-links a:hover {
+      color: #FFFFFF !important;
+    }
+    nav.nav-cinematic .hamburger span {
+      background: #FFFFFF !important;
+    }
+
+    /* Cinematic Track Container */
+    .cinematic-track {
+      position: relative;
+      height: 280vh;
+      background: #0B0408;
+      z-index: 10;
+      padding: 0 !important;
+      margin: 0;
+    }
+
+    .cinematic-sticky {
+      position: sticky;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      height: 100dvh;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #0B0408;
+    }
+
+    /* Ambient atmospheric background glows */
+    .cinematic-sticky::before {
+      content: '';
+      position: absolute;
+      width: 70vw;
+      height: 70vw;
+      max-width: 800px;
+      max-height: 800px;
+      background: radial-gradient(circle, rgba(232, 51, 109, 0.22) 0%, rgba(255, 107, 157, 0.08) 45%, transparent 70%);
+      top: 25%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      z-index: 1;
+      filter: blur(60px);
+    }
+
+    .cinematic-video-stage {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      z-index: 2;
+    }
+
+    .cinematic-video-frame {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      will-change: clip-path;
+    }
+
+    .cinematic-video-el {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 50% 34%;
+      display: block;
+      /* 100% qualidade original do vídeo - sem filtros, sem ruído, sem perda */
+      filter: none !important;
+      image-rendering: auto;
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+    }
+
+    /* Borda sutil de proteção de contraste nos cantos sem afetar o vídeo */
+    .cinematic-vignette {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: radial-gradient(circle at 50% 50%, transparent 60%, rgba(11, 4, 8, 0.6) 100%);
+      opacity: 0.5;
+    }
+
+    /* Floating Controls: Skip */
+    .cinematic-controls {
+      position: absolute;
+      top: calc(72px + 1.2rem);
+      right: 5vw;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      z-index: 25;
+      pointer-events: none;
+    }
+
+    .skip-intro-btn {
+      pointer-events: auto;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 0.65rem 1.25rem;
+      border-radius: 100px;
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      color: #FFFFFF;
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    }
+
+    .skip-intro-btn:hover {
+      background: rgba(255, 255, 255, 0.18);
+      border-color: rgba(255, 255, 255, 0.4);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 36px rgba(232, 51, 109, 0.3);
+    }
+
+    /* Linhas de abertura cinematográfica nos olhos (Letterbox Shutter) */
+    .shutter-line {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1.5px;
+      background: linear-gradient(90deg, transparent 0%, rgba(255, 107, 157, 0.7) 15%, #FFFFFF 50%, rgba(255, 107, 157, 0.7) 85%, transparent 100%);
+      box-shadow: 0 0 14px rgba(232, 51, 109, 0.6);
+      pointer-events: none;
+      z-index: 4;
+      will-change: transform, opacity;
+      transition: opacity 0.3s ease;
+    }
+
+    /* Overlaid Content */
+    .cinematic-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 15;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      padding: calc(72px + 4rem) 5vw 3rem 5vw;
+      pointer-events: none;
+      text-align: center;
+    }
+
+    /* Eyebrow Tag */
+    .cinematic-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 100px;
+      padding: 0.45rem 1.1rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.95);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+      will-change: transform, opacity;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    .eyebrow-dot {
+      width: 7px;
+      height: 7px;
+      background: var(--pink);
+      border-radius: 50%;
+      box-shadow: 0 0 10px var(--pink);
+      animation: pulseDot 2s infinite;
+    }
+
+    .eyebrow-pill {
+      background: rgba(232, 51, 109, 0.35);
+      color: #FFF;
+      padding: 2px 8px;
+      border-radius: 10px;
+      font-size: 0.68rem;
+    }
+
+    @keyframes pulseDot {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.3); opacity: 0.7; }
+    }
+
+    /* Main Name Display */
+    .cinematic-name-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      will-change: transform, opacity;
+      transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      margin: auto 0;
+      max-width: 1200px;
+      width: 100%;
+    }
+
+    .cinematic-name {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3.2rem, 9.5vw, 8.8rem);
+      font-weight: 900;
+      line-height: 0.95;
+      letter-spacing: var(--name-tracking, 0.03em);
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: clamp(0.6rem, 2vw, 1.8rem);
+      flex-wrap: wrap;
+      margin: 0;
+      color: #FFFFFF;
+      background: linear-gradient(180deg, #FFFFFF 20%, #FFE6F0 60%, #FFA8C8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 15px 40px rgba(0, 0, 0, 0.85)) drop-shadow(0 0 50px rgba(232, 51, 109, 0.45));
+    }
+
+    .name-divider {
+      color: var(--pink);
+      -webkit-text-fill-color: var(--pink);
+      opacity: 0.8;
+      font-style: italic;
+    }
+
+    .cinematic-subtitle {
+      font-family: 'DM Sans', sans-serif;
+      font-size: clamp(0.85rem, 1.4vw, 1.25rem);
+      font-weight: 400;
+      letter-spacing: clamp(0.12em, 0.35vw, 0.28em);
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.9);
+      margin-top: 1.5rem;
+      text-shadow: 0 4px 20px rgba(0, 0, 0, 0.9), 0 0 30px rgba(232, 51, 109, 0.3);
+      max-width: 680px;
+    }
+
+    /* Floating dynamic badges that reveal on scroll */
+    .cinematic-badge-float {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 0.9rem 1.4rem;
+      background: rgba(20, 8, 16, 0.68);
+      backdrop-filter: blur(24px) saturate(160%);
+      -webkit-backdrop-filter: blur(24px) saturate(160%);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 100px;
+      color: white;
+      text-align: left;
+      box-shadow: 0 16px 40px rgba(0,0,0,0.45), 0 0 30px rgba(232,51,109,0.15);
+      pointer-events: auto;
+      will-change: transform, opacity;
+      opacity: 0;
+      transform: translateY(30px) scale(0.9);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
+    }
+
+    .cinematic-badge-float:hover {
+      border-color: rgba(255, 107, 157, 0.5);
+      box-shadow: 0 20px 50px rgba(232,51,109,0.3);
+      transform: translateY(-4px) scale(1.02) !important;
+    }
+
+    .cinematic-badge-float .badge-icon {
+      font-size: 1.4rem;
+      width: 42px;
+      height: 42px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(232, 51, 109, 0.2);
+      border-radius: 50%;
+      border: 1px solid rgba(232, 51, 109, 0.4);
+      flex-shrink: 0;
+    }
+
+    .cinematic-badge-float strong {
+      display: block;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #FFFFFF;
+      letter-spacing: 0.02em;
+    }
+
+    .cinematic-badge-float small {
+      display: block;
+      font-size: 0.75rem;
+      color: rgba(255, 228, 239, 0.8);
+      font-weight: 400;
+      margin-top: 2px;
+    }
+
+    .badge-left {
+      left: 6vw;
+      top: 42%;
+    }
+
+    .badge-right {
+      right: 6vw;
+      top: 45%;
+    }
+
+    .badge-bottom {
+      bottom: calc(clamp(55px, 7vw, 95px) + 1.2rem);
+      left: 50%;
+      transform: translateX(-50%) translateY(30px) scale(0.9);
+    }
+
+    /* Transição em formato de ondinha na parte inferior */
+    .cinematic-wave-wrap {
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      width: 100%;
+      height: clamp(55px, 7vw, 95px);
+      pointer-events: none;
+      z-index: 18;
+      overflow: hidden;
+      line-height: 0;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .cinematic-wave-wrap.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .cinematic-wave-svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .cinematic-wave-back {
+      fill: rgba(232, 51, 109, 0.42);
+    }
+
+    .cinematic-wave-front {
+      fill: var(--pink);
+    }
+
+    /* Scroll Cue */
+    .cinematic-scroll-cue {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      will-change: opacity, transform;
+      transition: opacity 0.3s ease;
+      margin-top: auto;
+    }
+
+    .mouse-icon {
+      width: 24px;
+      height: 38px;
+      border: 2px solid rgba(255, 255, 255, 0.5);
+      border-radius: 20px;
+      display: flex;
+      justify-content: center;
+      padding-top: 6px;
+      box-shadow: 0 0 15px rgba(232, 51, 109, 0.3);
+    }
+
+    .mouse-wheel {
+      width: 3px;
+      height: 7px;
+      background: var(--rose);
+      border-radius: 3px;
+      animation: wheelBounce 1.8s infinite;
+    }
+
+    @keyframes wheelBounce {
+      0% { transform: translateY(0); opacity: 1; }
+      80% { transform: translateY(12px); opacity: 0; }
+      100% { transform: translateY(0); opacity: 0; }
+    }
+
+    .scroll-cue-text {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.75);
+      text-shadow: 0 2px 8px rgba(0,0,0,0.8);
+    }
+
+    .scroll-progress-line {
+      width: 120px;
+      height: 2px;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 2px;
+      overflow: hidden;
+      margin-top: 4px;
+    }
+
+    .scroll-progress-fill {
+      width: 0%;
+      height: 100%;
+      background: linear-gradient(90deg, var(--pink), var(--rose));
+      transition: width 0.1s linear;
+    }
+
+    /* Mobile adaptations */
+    @media (max-width: 900px) {
+      .cinematic-video-el {
+        object-position: 50% 28%;
+      }
+      .cinematic-controls {
+        top: calc(72px + 0.8rem);
+      }
+      .sound-toggle-btn, .skip-intro-btn {
+        padding: 0.55rem 1rem;
+        font-size: 0.76rem;
+      }
+      .badge-left {
+        left: 4vw;
+        top: 24%;
+      }
+      .badge-right {
+        right: 4vw;
+        top: auto;
+        bottom: 8rem;
+      }
+      .badge-bottom {
+        display: none;
+      }
+      .cinematic-badge-float {
+        padding: 0.7rem 1.1rem;
+      }
+      .cinematic-badge-float .badge-icon {
+        width: 34px;
+        height: 34px;
+        font-size: 1.1rem;
+      }
+      .cinematic-badge-float strong {
+        font-size: 0.85rem;
+      }
+      .cinematic-badge-float small {
+        font-size: 0.68rem;
+      }
+    }
   </style>
 </head>
 <body>
@@ -1020,46 +1504,109 @@
   <a href="#contact">Contato</a>
 </div>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-text">
-    <div class="hero-tag">Social Media · Estratégia · Crescimento</div>
+<!-- CINEMATIC EYE-REVEAL HERO INTRO -->
+<section class="cinematic-track" id="cinematicIntro">
+  <div class="cinematic-sticky">
+    
+    <!-- Video Stage -->
+    <div class="cinematic-video-stage">
+      <div class="cinematic-video-frame" id="videoFrame">
+        <video 
+          id="heroVideo" 
+          class="cinematic-video-el" 
+          playsinline 
+          autoplay 
+          muted 
+          loop 
+          preload="auto"
+          poster="./img/arivideo_frame0.jpg">
+          <source src="./videos/arivideo.mp4" type="video/mp4">
+        </video>
+        
+        <!-- Shutter accent lines -->
+        <div class="shutter-line shutter-line-top" id="shutterLineTop"></div>
+        <div class="shutter-line shutter-line-bottom" id="shutterLineBottom"></div>
+      </div>
+    </div>
 
-    <h1 class="hero-title">
-      Suas redes<br>
-      <em>crescendo</em><br>
-      de verdade.
-    </h1>
-
-    <p class="hero-sub">
-      Campanhas criativas e estratégia consistente para transformar presença digital em clientes reais — com estética, dados e propósito.
-    </p>
-
-    <div class="hero-actions">
-      <a href="#campaigns" class="btn-primary">
-        Ver Portfólio
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-          <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+    <!-- Floating UI Controls (Skip) -->
+    <div class="cinematic-controls">
+      <a href="#campaigns" class="skip-intro-btn" id="skipIntroBtn">
+        <span>Explorar Portfólio</span>
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+          <path d="M8 3v10M3 8l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
       </a>
-      <a href="#contact" class="btn-outline">Agendar Chamada</a>
     </div>
 
-    <div class="hero-stat">
-      <small>Média de crescimento</small>
-      <strong>+320%</strong>
-    </div>
-  </div>
+    <!-- Overlaid Luxury Typography -->
+    <div class="cinematic-overlay" id="cinematicOverlay">
+      
+      <!-- Top Eyebrow Tag -->
+      <div class="cinematic-eyebrow" id="cinematicEyebrow">
+        <span class="eyebrow-dot"></span>
+        <span>PORTFÓLIO & ESTRATÉGIA DIGITAL</span>
+        <span class="eyebrow-pill">2026</span>
+      </div>
 
-  <div class="hero-visual">
-    <img
-      src="./img/ari.jpg"
-      alt="Social Media Marketing"
-    >
-    <div class="hero-badge">
-      <p>Clientes satisfeitos</p>
-      <strong>48+</strong>
+      <!-- Main Name Heading: ARIANE LIERRY -->
+      <div class="cinematic-name-wrap" id="cinematicNameWrap">
+        <h1 class="cinematic-name" id="cinematicName">
+          <span class="name-part name-first">ARIANE</span>
+          <span class="name-divider">·</span>
+          <span class="name-part name-last">LIERRY</span>
+        </h1>
+        <p class="cinematic-subtitle" id="cinematicSubtitle">
+          Criatividade que hipnotiza · Estratégia que converte
+        </p>
+      </div>
+
+      <!-- Dynamic Parallax Badges (Reveal as you zoom out) -->
+      <div class="cinematic-badge-float badge-left" id="badgeLeft">
+        <div class="badge-icon">👁️</div>
+        <div class="badge-content">
+          <strong>Olhar Estratégico</strong>
+          <small>Posicionamento de alto valor</small>
+        </div>
+      </div>
+
+      <div class="cinematic-badge-float badge-right" id="badgeRight">
+        <div class="badge-icon">📈</div>
+        <div class="badge-content">
+          <strong>+320% Alcance</strong>
+          <small>Média de crescimento real</small>
+        </div>
+      </div>
+
+      <div class="cinematic-badge-float badge-bottom" id="badgeBottom">
+        <div class="badge-icon">✨</div>
+        <div class="badge-content">
+          <strong>Identidade & Reels</strong>
+          <small>Conteúdo magnético e autêntico</small>
+        </div>
+      </div>
+
+      <!-- Interactive Scroll Cue -->
+      <div class="cinematic-scroll-cue" id="scrollCue">
+        <div class="mouse-icon">
+          <div class="mouse-wheel"></div>
+        </div>
+        <div class="scroll-cue-text">ROLE PARA ABRIR O OLHAR</div>
+        <div class="scroll-progress-line">
+          <div class="scroll-progress-fill" id="scrollProgressFill"></div>
+        </div>
+      </div>
+
     </div>
+
+    <!-- Transição de Ondinha na Base do Vídeo -->
+    <div class="cinematic-wave-wrap" id="cinematicWaveWrap" aria-hidden="true">
+      <svg class="cinematic-wave-svg" viewBox="0 0 1440 96" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+        <path class="cinematic-wave-back" d="M0,32 C280,72 520,12 800,48 C1080,82 1280,24 1440,38 L1440,96 L0,96 Z"/>
+        <path class="cinematic-wave-front" d="M0,52 C320,92 640,24 960,64 C1160,88 1320,44 1440,56 L1440,96 L0,96 Z"/>
+      </svg>
+    </div>
+
   </div>
 </section>
 
@@ -1431,6 +1978,210 @@
       if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
     });
   });
+
+  // ══════════════════════════════════════════════════════════
+  // CINEMATIC EYE-REVEAL HERO SCROLL ENGINE
+  // ══════════════════════════════════════════════════════════
+  (function initCinematicExperience() {
+    const track = document.getElementById('cinematicIntro');
+    const video = document.getElementById('heroVideo');
+    const videoFrame = document.getElementById('videoFrame');
+    const nameWrap = document.getElementById('cinematicNameWrap');
+    const eyebrow = document.getElementById('cinematicEyebrow');
+    const scrollCue = document.getElementById('scrollCue');
+    const progressFill = document.getElementById('scrollProgressFill');
+    const badgeLeft = document.getElementById('badgeLeft');
+    const badgeRight = document.getElementById('badgeRight');
+    const badgeBottom = document.getElementById('badgeBottom');
+    const shutterLineTop = document.getElementById('shutterLineTop');
+    const shutterLineBottom = document.getElementById('shutterLineBottom');
+    const waveWrap = document.getElementById('cinematicWaveWrap');
+    const nav = document.querySelector('nav');
+
+    if (!track || !video || !videoFrame) return;
+
+    // Ensure video plays smoothly in loop
+    video.muted = true;
+    const playPromise = video.play();
+    if (playPromise !== undefined) {
+      playPromise.catch(() => {});
+    }
+
+    // Lerp state for buttery 60fps/120fps motion
+    let targetProgress = 0;
+    let currentProgress = 0;
+    let isTicking = false;
+
+    function calculateScrollProgress() {
+      const rect = track.getBoundingClientRect();
+      const scrollableDistance = track.offsetHeight - window.innerHeight;
+      if (scrollableDistance <= 0) return 0;
+      
+      const scrolled = -rect.top;
+      const rawProgress = scrolled / scrollableDistance;
+      return Math.min(Math.max(rawProgress, 0), 1);
+    }
+
+    function onScroll() {
+      targetProgress = calculateScrollProgress();
+      if (!isTicking) {
+        requestAnimationFrame(renderCinematicFrame);
+        isTicking = true;
+      }
+    }
+
+    function renderCinematicFrame() {
+      // Lerp smoothing (linear interpolation)
+      currentProgress += (targetProgress - currentProgress) * 0.14;
+
+      // Snap when close enough
+      if (Math.abs(targetProgress - currentProgress) < 0.0008) {
+        currentProgress = targetProgress;
+      }
+
+      const p = currentProgress;
+
+      // Manter 100% a qualidade original do vídeo (SEM digital zoom / sem perda de resolução)
+      video.style.transform = 'none';
+
+      // Posição vertical responsiva calibrada nos olhos da Ariane
+      const isLandscape = window.innerWidth > window.innerHeight;
+      const cy = isLandscape ? window.innerHeight * 0.43 : window.innerHeight * 0.32;
+
+      // 1. Abertura em FAIXA HORIZONTAL CINEMATOGRÁFICA (Estilo Letterbox / Shutter nos Olhos)
+      // Como na referência do usuário: faixa panorâmica horizontal focada nos olhos que se abre verticalmente
+      const eased = p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2;
+
+      // Altura inicial da faixa equilibrada no desktop sem barra inferior gigante
+      const initialHalfH = isLandscape ? 78 : 52;
+      const startTopInset = Math.max(0, cy - initialHalfH);
+      const startBottomInset = Math.max(0, window.innerHeight - (cy + initialHalfH));
+
+      // No desktop, a abertura inferior é rápida para conectar o vídeo diretamente à ondinha
+      const topExpandPower = isLandscape ? 0.95 : 1.25;
+      const bottomExpandPower = isLandscape ? 0.42 : 1.25;
+
+      const currentTopInset = startTopInset * (1 - Math.pow(eased, topExpandPower));
+      let currentBottomInset = startBottomInset * (1 - Math.pow(eased, bottomExpandPower));
+      if (isLandscape && currentBottomInset < 25) {
+        currentBottomInset = 0;
+      }
+
+      if (p >= 0.96) {
+        videoFrame.style.clipPath = 'none';
+        if (shutterLineTop) shutterLineTop.style.opacity = '0';
+        if (shutterLineBottom) shutterLineBottom.style.opacity = '0';
+      } else {
+        videoFrame.style.clipPath = `inset(${currentTopInset.toFixed(1)}px 0px ${currentBottomInset.toFixed(1)}px 0px)`;
+        
+        // Linhas de corte cinematográficas que acompanham a abertura
+        const shutterOpacity = Math.max(0, 1 - p * 2.2).toFixed(2);
+        if (shutterLineTop) {
+          shutterLineTop.style.transform = `translate3d(0, ${currentTopInset.toFixed(1)}px, 0)`;
+          shutterLineTop.style.opacity = shutterOpacity;
+        }
+        if (shutterLineBottom) {
+          const bottomPos = window.innerHeight - currentBottomInset;
+          shutterLineBottom.style.transform = `translate3d(0, ${bottomPos.toFixed(1)}px, 0)`;
+          shutterLineBottom.style.opacity = shutterOpacity;
+        }
+      }
+
+      // 2. Animação do nome sobre o vídeo:
+      // Inicia posicionado logo abaixo da faixa para que os olhos fiquem 100% nítidos e desobstruídos
+      if (nameWrap) {
+        const trackingVal = (0.03 + (p * 0.12)).toFixed(3);
+        nameWrap.style.setProperty('--name-tracking', `${trackingVal}em`);
+        
+        const nameY = 85 - (p * 155);
+        const nameOpacity = p > 0.88 ? Math.max(0, 1 - (p - 0.88) * 8.3) : 1;
+        nameWrap.style.transform = `translate3d(0, ${nameY.toFixed(1)}px, 0)`;
+        nameWrap.style.opacity = nameOpacity.toFixed(2);
+      }
+
+      // 4. Eyebrow & Scroll cue fades
+      if (eyebrow) {
+        eyebrow.style.opacity = Math.max(0, 1 - p * 3).toFixed(2);
+        eyebrow.style.transform = `translate3d(0, ${(-p * 30).toFixed(1)}px, 0)`;
+      }
+
+      if (scrollCue) {
+        scrollCue.style.opacity = Math.max(0, 1 - p * 3.5).toFixed(2);
+      }
+
+      if (progressFill) {
+        progressFill.style.width = `${(p * 100).toFixed(1)}%`;
+      }
+
+      // 5. Floating badges appearance (staggered during reveal)
+      if (badgeLeft) {
+        const blProgress = Math.min(Math.max((p - 0.18) / 0.25, 0), 1);
+        badgeLeft.style.opacity = blProgress.toFixed(2);
+        badgeLeft.style.transform = `translate3d(0, ${((1 - blProgress) * 35).toFixed(1)}px, 0) scale(${(0.9 + 0.1 * blProgress).toFixed(2)})`;
+      }
+
+      if (badgeRight) {
+        const brProgress = Math.min(Math.max((p - 0.28) / 0.25, 0), 1);
+        badgeRight.style.opacity = brProgress.toFixed(2);
+        badgeRight.style.transform = `translate3d(0, ${((1 - brProgress) * 35).toFixed(1)}px, 0) scale(${(0.9 + 0.1 * brProgress).toFixed(2)})`;
+      }
+
+      if (badgeBottom) {
+        const bbProgress = Math.min(Math.max((p - 0.38) / 0.25, 0), 1);
+        badgeBottom.style.opacity = bbProgress.toFixed(2);
+        badgeBottom.style.transform = `translate3d(-50%, ${((1 - bbProgress) * 35).toFixed(1)}px, 0) scale(${(0.9 + 0.1 * bbProgress).toFixed(2)})`;
+      }
+
+      // 6. Transição em ondinha ao chegar na parte inferior
+      if (waveWrap) {
+        if (p > 0.18) {
+          waveWrap.classList.add('active');
+        } else {
+          waveWrap.classList.remove('active');
+        }
+      }
+
+      // 6. Navbar styling (frosted dark in cinematic intro, light theme when scrolled past)
+      if (nav) {
+        if (p < 0.98) {
+          nav.classList.add('nav-cinematic');
+        } else {
+          nav.classList.remove('nav-cinematic');
+        }
+      }
+
+      // Keep loop alive if not settled
+      if (Math.abs(targetProgress - currentProgress) > 0.0008) {
+        requestAnimationFrame(renderCinematicFrame);
+      } else {
+        isTicking = false;
+      }
+    }
+
+    // Performance optimization: Pause video when completely off-screen
+    const videoObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          if (video.paused) video.play().catch(() => {});
+        } else {
+          if (!video.paused) video.pause();
+        }
+      });
+    }, { threshold: 0.05 });
+    videoObserver.observe(track);
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', () => {
+      targetProgress = calculateScrollProgress();
+      currentProgress = targetProgress;
+      renderCinematicFrame();
+    }, { passive: true });
+
+    // Initial trigger
+    targetProgress = calculateScrollProgress();
+    currentProgress = targetProgress;
+    renderCinematicFrame();
+  })();
 </script>
 </body>
 </html>
