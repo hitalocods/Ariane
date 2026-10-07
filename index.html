@@ -721,7 +721,10 @@
       box-shadow: 0 12px 28px rgba(232,51,109,0.25);
     }
 
-    .packages-dots {
+    .packages-dots,
+    .packages-switcher,
+    .package-nav-arrow,
+    .package-tier-num {
       display: none;
     }
 
@@ -992,7 +995,7 @@
       }
     }
 
-    /* ── Mobile Packages Horizontal Snap Carousel ("um do lado do outro e o do meio em destaque") ── */
+    /* ── Mobile Packages Horizontal Snap Carousel & Switcher ("3 Planos Claros e Interativos") ── */
     @media (max-width: 900px) {
       #packages {
         padding-left: 0 !important;
@@ -1002,6 +1005,172 @@
       #packages > .reveal:first-child {
         padding: 0 1.5rem;
       }
+
+      /* Barra de seleção rápida dos 3 planos */
+      .packages-switcher {
+        display: flex;
+        flex-direction: column;
+        gap: 0.65rem;
+        padding: 0 1.25rem;
+        margin-top: 1.5rem;
+        margin-bottom: 0.2rem;
+      }
+
+      .packages-switcher-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 0.74rem;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+      }
+
+      .switcher-count {
+        color: var(--pink);
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .switcher-count::before {
+        content: '';
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--pink);
+        box-shadow: 0 0 8px var(--pink);
+      }
+
+      .switcher-hint {
+        color: var(--gray);
+        font-size: 0.72rem;
+        font-weight: 500;
+        opacity: 0.85;
+      }
+
+      .packages-tabs {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        background: rgba(26, 10, 18, 0.05);
+        padding: 4px;
+        border-radius: 100px;
+        border: 1px solid rgba(232, 51, 109, 0.15);
+        gap: 4px;
+      }
+
+      .package-tab {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 0.55rem 0.2rem;
+        border-radius: 100px;
+        border: none;
+        background: transparent;
+        color: var(--mid);
+        font-family: inherit;
+        cursor: pointer;
+        transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      .package-tab .tab-index {
+        font-size: 0.62rem;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        color: var(--gray);
+        opacity: 0.75;
+      }
+
+      .package-tab .tab-name {
+        font-weight: 700;
+        font-size: 0.84rem;
+        line-height: 1.1;
+      }
+
+      .package-tab .tab-price {
+        font-size: 0.7rem;
+        color: var(--gray);
+        font-weight: 600;
+        margin-top: 1px;
+      }
+
+      .package-tab.active {
+        background: white;
+        color: var(--dark);
+        box-shadow: 0 4px 18px rgba(232, 51, 109, 0.2);
+      }
+
+      .package-tab.active .tab-index {
+        color: var(--pink);
+        opacity: 1;
+      }
+
+      .package-tab.active .tab-name {
+        color: var(--pink);
+      }
+
+      .package-tab.active .tab-price {
+        color: var(--dark);
+        font-weight: 800;
+      }
+
+      .tab-badge-pill {
+        position: absolute;
+        top: -9px;
+        background: var(--pink);
+        color: white;
+        font-size: 0.54rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        padding: 1px 7px;
+        border-radius: 100px;
+        box-shadow: 0 2px 6px rgba(232, 51, 109, 0.35);
+        white-space: nowrap;
+      }
+
+      /* Container do carrossel com setas laterais */
+      .packages-carousel-container {
+        position: relative;
+        width: 100%;
+      }
+
+      .package-nav-arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        border: 1px solid rgba(232, 51, 109, 0.2);
+        box-shadow: 0 6px 20px rgba(26, 10, 18, 0.12);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--dark);
+        cursor: pointer;
+        z-index: 10;
+        transition: transform 0.2s, background 0.2s;
+      }
+
+      .package-nav-arrow:active {
+        transform: translateY(-50%) scale(0.9);
+        background: white;
+      }
+
+      .package-nav-arrow.prev-btn {
+        left: 0.4rem;
+      }
+
+      .package-nav-arrow.next-btn {
+        right: 0.4rem;
+      }
+
       .packages-grid {
         display: flex !important;
         grid-template-columns: none !important;
@@ -1010,28 +1179,53 @@
         scroll-snap-type: x mandatory;
         scroll-behavior: smooth;
         -webkit-overflow-scrolling: touch;
-        gap: 1.15rem !important;
-        padding: 2.2rem max(1.5rem, calc((100vw - min(80vw, 315px)) / 2)) 2rem !important;
-        margin-top: 1.2rem !important;
+        gap: 1.1rem !important;
+        padding: 1.8rem max(1.2rem, calc((100vw - min(74vw, 285px)) / 2)) 1.8rem !important;
+        margin-top: 0.4rem !important;
         scrollbar-width: none;
         -ms-overflow-style: none;
       }
+
       .packages-grid::-webkit-scrollbar {
         display: none;
       }
+
       .package-card {
-        flex: 0 0 min(80vw, 315px) !important;
-        width: min(80vw, 315px) !important;
-        max-width: min(80vw, 315px) !important;
+        flex: 0 0 min(74vw, 285px) !important;
+        width: min(74vw, 285px) !important;
+        max-width: min(74vw, 285px) !important;
         min-width: 0 !important;
         scroll-snap-align: center;
         scroll-snap-stop: always;
-        padding: 2rem 1.6rem !important;
+        padding: 1.8rem 1.45rem !important;
         border-radius: 28px !important;
         transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.45s ease, opacity 0.45s ease, border-color 0.45s ease;
         transform: scale(0.92);
-        opacity: 0.72;
+        opacity: 0.84;
       }
+
+      .package-card-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+        margin-bottom: -0.2rem;
+      }
+
+      .package-tier-num {
+        display: inline-block;
+        font-size: 0.65rem;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--pink);
+        background: rgba(232, 51, 109, 0.1);
+        padding: 3px 8px;
+        border-radius: 100px;
+        white-space: nowrap;
+        flex-shrink: 0;
+      }
+
       .package-card.is-active,
       .package-card.featured.is-active {
         transform: scale(1.03);
@@ -1040,8 +1234,20 @@
         box-shadow: 0 25px 60px rgba(232, 51, 109, 0.22);
         border-color: rgba(232, 51, 109, 0.5);
       }
+
       .package-card.featured {
-        transform: scale(0.96);
+        transform: scale(0.95);
+      }
+
+      .package-card.featured .package-badge {
+        position: static !important;
+        margin: 0 !important;
+        padding: 3px 9px !important;
+        font-size: 0.62rem !important;
+        letter-spacing: 0.06em !important;
+        box-shadow: 0 4px 12px rgba(232, 51, 109, 0.2) !important;
+        white-space: nowrap;
+        flex-shrink: 0;
       }
 
       /* Efeito de scroll quando vai descendo (Staggered Entrance Animation) */
@@ -1071,7 +1277,7 @@
         align-items: center;
         justify-content: center;
         gap: 8px;
-        margin-top: 0.4rem;
+        margin-top: 0.2rem;
         padding-bottom: 0.8rem;
       }
       .package-dot {
@@ -1912,50 +2118,96 @@
     <p class="section-sub">Planos pensados para marcas que querem crescer nas redes com estratégia, estética e resultados reais.</p>
   </div>
 
-  <div class="packages-grid reveal">
-    <div class="package-card">
-      <h3>Starter</h3>
-      <div class="package-price">R$ 1.250</div>
-      <p class="package-text">Perfeito para quem está começando e quer presença profissional no Instagram.</p>
-      <ul class="package-list">
-        <li>3 posts semanais</li>
-        <li>Planejamento de conteúdo</li>
-        <li>Legendagem estratégica</li>
-      </ul>
-      <a href="#contact" class="package-cta">Entrar em contato</a>
+  <!-- Seletor dos 3 Planos no Mobile (Segmented Tabs) -->
+  <div class="packages-switcher reveal" id="packagesSwitcher">
+    <div class="packages-switcher-header">
+      <span class="switcher-count">3 Planos Disponíveis</span>
+      <span class="switcher-hint">Toque para ver ou deslize →</span>
+    </div>
+    <div class="packages-tabs">
+      <button class="package-tab" data-index="0" type="button">
+        <span class="tab-index">01</span>
+        <span class="tab-name">Starter</span>
+        <span class="tab-price">R$ 1.250</span>
+      </button>
+      <button class="package-tab active" data-index="1" type="button">
+        <span class="tab-badge-pill">Mais Escolhido</span>
+        <span class="tab-index">02</span>
+        <span class="tab-name">Growth</span>
+        <span class="tab-price">R$ 2.600</span>
+      </button>
+      <button class="package-tab" data-index="2" type="button">
+        <span class="tab-index">03</span>
+        <span class="tab-name">Premium</span>
+        <span class="tab-price">R$ 4.200</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Container do Carrossel com Botões de Navegação -->
+  <div class="packages-carousel-container">
+    <button class="package-nav-arrow prev-btn" id="packagePrevBtn" aria-label="Plano anterior" type="button">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+    </button>
+
+    <div class="packages-grid reveal">
+      <div class="package-card" data-index="0">
+        <div class="package-card-top">
+          <span class="package-tier-num">Plano 01</span>
+        </div>
+        <h3>Starter</h3>
+        <div class="package-price">R$ 1.250</div>
+        <p class="package-text">Perfeito para quem está começando e quer presença profissional no Instagram.</p>
+        <ul class="package-list">
+          <li>3 posts semanais</li>
+          <li>Planejamento de conteúdo</li>
+          <li>Legendagem estratégica</li>
+        </ul>
+        <a href="#contact" class="package-cta">Entrar em contato</a>
+      </div>
+
+      <div class="package-card featured" data-index="1">
+        <div class="package-card-top">
+          <span class="package-tier-num">Plano 02</span>
+          <span class="package-badge">Mais escolhido</span>
+        </div>
+        <h3>Growth</h3>
+        <div class="package-price">R$ 2.600</div>
+        <p class="package-text">Ótimo para marcas que querem aumentar engajamento e gerar leads com posts e stories.</p>
+        <ul class="package-list">
+          <li>5 posts semanais</li>
+          <li>5 stories semanais</li>
+          <li>Otimização de tráfego</li>
+        </ul>
+        <a href="#contact" class="package-cta">Quero esse plano</a>
+      </div>
+
+      <div class="package-card" data-index="2">
+        <div class="package-card-top">
+          <span class="package-tier-num">Plano 03</span>
+        </div>
+        <h3>Premium</h3>
+        <div class="package-price">R$ 4.200</div>
+        <p class="package-text">Para quem busca escala, consistência e atendimento completo de social media.</p>
+        <ul class="package-list">
+          <li>Posts + stories diários</li>
+          <li>Gestão de anúncios</li>
+          <li>Relatórios mensais</li>
+        </ul>
+        <a href="#contact" class="package-cta">Solicitar orçamento</a>
+      </div>
     </div>
 
-    <div class="package-card featured">
-      <span class="package-badge">Mais escolhido</span>
-      <h3>Growth</h3>
-      <div class="package-price">R$ 2.600</div>
-      <p class="package-text">Ótimo para marcas que querem aumentar engajamento e gerar leads com posts e stories.</p>
-      <ul class="package-list">
-        <li>5 posts semanais</li>
-        <li>5 stories semanais</li>
-        <li>Otimização de tráfego</li>
-      </ul>
-      <a href="#contact" class="package-cta">Quero esse plano</a>
-    </div>
-
-    <div class="package-card">
-      <h3>Premium</h3>
-      <div class="package-price">R$ 4.200</div>
-      <p class="package-text">Para quem busca escala, consistência e atendimento completo de social media.</p>
-      <ul class="package-list">
-        <li>Posts + stories diários</li>
-        <li>Gestão de anúncios</li>
-        <li>Relatórios mensais</li>
-      </ul>
-      <a href="#contact" class="package-cta">Solicitar orçamento</a>
-    </div>
+    <button class="package-nav-arrow next-btn" id="packageNextBtn" aria-label="Próximo plano" type="button">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+    </button>
   </div>
 
   <!-- Indicadores de navegação no mobile -->
   <div class="packages-dots" id="packagesDots" aria-hidden="true">
-    <button class="package-dot" data-index="0" aria-label="Plano Starter"></button>
-    <button class="package-dot active" data-index="1" aria-label="Plano Growth"></button>
-    <button class="package-dot" data-index="2" aria-label="Plano Premium"></button>
+    <button class="package-dot" data-index="0" aria-label="Plano Starter (1 de 3)"></button>
+    <button class="package-dot active" data-index="1" aria-label="Plano Growth (2 de 3)"></button>
+    <button class="package-dot" data-index="2" aria-label="Plano Premium (3 de 3)"></button>
   </div>
 </section>
 
@@ -2082,16 +2334,21 @@
     });
   });
 
-  // ── Mobile Packages Carousel & Scroll Snap ("um do lado do outro e o do meio em destaque") ──
+  // ── Mobile Packages Carousel, Tabs & Navigation ("3 Planos Claros e Interativos") ──
   (function initMobilePackages() {
     const grid = document.querySelector('.packages-grid');
     const cards = grid ? grid.querySelectorAll('.package-card') : [];
     const dotsContainer = document.getElementById('packagesDots');
     const dots = dotsContainer ? dotsContainer.querySelectorAll('.package-dot') : [];
+    const switcher = document.getElementById('packagesSwitcher');
+    const tabs = switcher ? switcher.querySelectorAll('.package-tab') : [];
+    const prevBtn = document.getElementById('packagePrevBtn');
+    const nextBtn = document.getElementById('packageNextBtn');
 
     if (!grid || cards.length === 0) return;
 
     let hasAutoCentered = false;
+    let currentActiveIndex = 1;
 
     function scrollToCard(index, smooth = true) {
       if (!cards[index]) return;
@@ -2100,6 +2357,7 @@
       const cardRect = card.getBoundingClientRect();
       const scrollOffset = (cardRect.left - gridRect.left) - ((grid.clientWidth - card.clientWidth) / 2);
       grid.scrollBy({ left: scrollOffset, behavior: smooth ? 'smooth' : 'auto' });
+      currentActiveIndex = index;
     }
 
     function updateActiveCard() {
@@ -2117,6 +2375,9 @@
         }
       });
 
+      currentActiveIndex = closestIndex;
+
+      // Atualiza cartões
       cards.forEach((card, i) => {
         if (i === closestIndex) {
           card.classList.add('is-active');
@@ -2125,6 +2386,7 @@
         }
       });
 
+      // Atualiza dots
       dots.forEach((dot, i) => {
         if (i === closestIndex) {
           dot.classList.add('active');
@@ -2132,9 +2394,18 @@
           dot.classList.remove('active');
         }
       });
+
+      // Atualiza tabs do seletor superior
+      tabs.forEach((tab, i) => {
+        if (i === closestIndex) {
+          tab.classList.add('active');
+        } else {
+          tab.classList.remove('active');
+        }
+      });
     }
 
-    // Auto-centralizar no plano do meio (Growth - índice 1) quando o usuário descer até os pacotes
+    // Auto-centralizar no plano do meio (Growth - índice 1) quando a seção entra na tela
     const packagesSection = document.getElementById('packages');
     if (packagesSection) {
       const sectionObserver = new IntersectionObserver((entries) => {
@@ -2151,6 +2422,7 @@
       sectionObserver.observe(packagesSection);
     }
 
+    // Scroll listener com debounce
     let scrollDebounce;
     grid.addEventListener('scroll', () => {
       clearTimeout(scrollDebounce);
@@ -2158,11 +2430,35 @@
       updateActiveCard();
     }, { passive: true });
 
+    // Clique nas tabs do seletor
+    tabs.forEach((tab, i) => {
+      tab.addEventListener('click', () => {
+        scrollToCard(i, true);
+      });
+    });
+
+    // Clique nos dots
     dots.forEach((dot, i) => {
       dot.addEventListener('click', () => {
         scrollToCard(i, true);
       });
     });
+
+    // Botão Anterior
+    if (prevBtn) {
+      prevBtn.addEventListener('click', () => {
+        const targetIdx = currentActiveIndex > 0 ? currentActiveIndex - 1 : cards.length - 1;
+        scrollToCard(targetIdx, true);
+      });
+    }
+
+    // Botão Próximo
+    if (nextBtn) {
+      nextBtn.addEventListener('click', () => {
+        const targetIdx = currentActiveIndex < cards.length - 1 ? currentActiveIndex + 1 : 0;
+        scrollToCard(targetIdx, true);
+      });
+    }
 
     window.addEventListener('resize', () => {
       if (window.innerWidth <= 900) {
@@ -2173,6 +2469,7 @@
     // Estado inicial no mobile
     if (window.innerWidth <= 900) {
       cards[1]?.classList.add('is-active');
+      tabs[1]?.classList.add('active');
     }
   })();
 
