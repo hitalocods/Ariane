@@ -721,6 +721,10 @@
       box-shadow: 0 12px 28px rgba(232,51,109,0.25);
     }
 
+    .packages-dots {
+      display: none;
+    }
+
     .story-badge {
       display: inline-flex;
       align-items: center;
@@ -957,25 +961,19 @@
         grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 1rem;
       }
-      .packages-grid {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-      }
       section { padding: 4.5rem 1.5rem; }
       .campaigns-header { flex-direction: column; align-items: flex-start; }
     }
 
     @media (max-width: 560px) {
       .stories-grid,
-      .cards-grid,
-      .packages-grid {
+      .cards-grid {
         grid-template-columns: 1fr;
         gap: 0.9rem;
       }
       .hero-actions { flex-direction: column; }
       .btn-primary,
       .btn-outline { text-align: center; justify-content: center; }
-      .package-card,
       .card,
       .story-card {
         min-width: 0;
@@ -991,6 +989,105 @@
       .story-store-link {
         font-size: 0.75rem;
         padding: 0.5rem 0.95rem;
+      }
+    }
+
+    /* ── Mobile Packages Horizontal Snap Carousel ("um do lado do outro e o do meio em destaque") ── */
+    @media (max-width: 900px) {
+      #packages {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        overflow: hidden;
+      }
+      #packages > .reveal:first-child {
+        padding: 0 1.5rem;
+      }
+      .packages-grid {
+        display: flex !important;
+        grid-template-columns: none !important;
+        overflow-x: auto;
+        overflow-y: visible;
+        scroll-snap-type: x mandatory;
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch;
+        gap: 1.15rem !important;
+        padding: 2.2rem max(1.5rem, calc((100vw - min(80vw, 315px)) / 2)) 2rem !important;
+        margin-top: 1.2rem !important;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+      }
+      .packages-grid::-webkit-scrollbar {
+        display: none;
+      }
+      .package-card {
+        flex: 0 0 min(80vw, 315px) !important;
+        width: min(80vw, 315px) !important;
+        max-width: min(80vw, 315px) !important;
+        min-width: 0 !important;
+        scroll-snap-align: center;
+        scroll-snap-stop: always;
+        padding: 2rem 1.6rem !important;
+        border-radius: 28px !important;
+        transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.45s ease, opacity 0.45s ease, border-color 0.45s ease;
+        transform: scale(0.92);
+        opacity: 0.72;
+      }
+      .package-card.is-active,
+      .package-card.featured.is-active {
+        transform: scale(1.03);
+        opacity: 1;
+        z-index: 5;
+        box-shadow: 0 25px 60px rgba(232, 51, 109, 0.22);
+        border-color: rgba(232, 51, 109, 0.5);
+      }
+      .package-card.featured {
+        transform: scale(0.96);
+      }
+
+      /* Efeito de scroll quando vai descendo (Staggered Entrance Animation) */
+      .packages-grid.reveal:not(.visible) .package-card:nth-child(1) {
+        transform: scale(0.85) translateX(-45px);
+        opacity: 0;
+      }
+      .packages-grid.reveal:not(.visible) .package-card:nth-child(2) {
+        transform: scale(0.85) translateY(45px);
+        opacity: 0;
+      }
+      .packages-grid.reveal:not(.visible) .package-card:nth-child(3) {
+        transform: scale(0.85) translateX(45px);
+        opacity: 0;
+      }
+      .packages-grid.reveal.visible .package-card {
+        transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.65s ease, box-shadow 0.45s ease;
+      }
+      .packages-grid.reveal.visible .package-card.is-active {
+        transform: scale(1.03);
+        opacity: 1;
+      }
+
+      /* Dots indicadores no mobile */
+      .packages-dots {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        margin-top: 0.4rem;
+        padding-bottom: 0.8rem;
+      }
+      .package-dot {
+        border: none;
+        padding: 0;
+        width: 8px;
+        height: 8px;
+        border-radius: 99px;
+        background: rgba(26, 10, 18, 0.2);
+        transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        cursor: pointer;
+      }
+      .package-dot.active {
+        width: 26px;
+        background: var(--pink);
+        box-shadow: 0 2px 10px rgba(232, 51, 109, 0.4);
       }
     }
 
@@ -1853,6 +1950,13 @@
       <a href="#contact" class="package-cta">Solicitar orçamento</a>
     </div>
   </div>
+
+  <!-- Indicadores de navegação no mobile -->
+  <div class="packages-dots" id="packagesDots" aria-hidden="true">
+    <button class="package-dot" data-index="0" aria-label="Plano Starter"></button>
+    <button class="package-dot active" data-index="1" aria-label="Plano Growth"></button>
+    <button class="package-dot" data-index="2" aria-label="Plano Premium"></button>
+  </div>
 </section>
 
 <!-- Modal para ver story em tamanho real -->
@@ -1977,6 +2081,100 @@
       if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
     });
   });
+
+  // ── Mobile Packages Carousel & Scroll Snap ("um do lado do outro e o do meio em destaque") ──
+  (function initMobilePackages() {
+    const grid = document.querySelector('.packages-grid');
+    const cards = grid ? grid.querySelectorAll('.package-card') : [];
+    const dotsContainer = document.getElementById('packagesDots');
+    const dots = dotsContainer ? dotsContainer.querySelectorAll('.package-dot') : [];
+
+    if (!grid || cards.length === 0) return;
+
+    let hasAutoCentered = false;
+
+    function scrollToCard(index, smooth = true) {
+      if (!cards[index]) return;
+      const card = cards[index];
+      const gridRect = grid.getBoundingClientRect();
+      const cardRect = card.getBoundingClientRect();
+      const scrollOffset = (cardRect.left - gridRect.left) - ((grid.clientWidth - card.clientWidth) / 2);
+      grid.scrollBy({ left: scrollOffset, behavior: smooth ? 'smooth' : 'auto' });
+    }
+
+    function updateActiveCard() {
+      if (window.innerWidth > 900) return;
+      const gridCenter = grid.getBoundingClientRect().left + grid.clientWidth / 2;
+      let closestIndex = 1;
+      let minDistance = Infinity;
+
+      cards.forEach((card, i) => {
+        const cardCenter = card.getBoundingClientRect().left + card.clientWidth / 2;
+        const dist = Math.abs(gridCenter - cardCenter);
+        if (dist < minDistance) {
+          minDistance = dist;
+          closestIndex = i;
+        }
+      });
+
+      cards.forEach((card, i) => {
+        if (i === closestIndex) {
+          card.classList.add('is-active');
+        } else {
+          card.classList.remove('is-active');
+        }
+      });
+
+      dots.forEach((dot, i) => {
+        if (i === closestIndex) {
+          dot.classList.add('active');
+        } else {
+          dot.classList.remove('active');
+        }
+      });
+    }
+
+    // Auto-centralizar no plano do meio (Growth - índice 1) quando o usuário descer até os pacotes
+    const packagesSection = document.getElementById('packages');
+    if (packagesSection) {
+      const sectionObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && !hasAutoCentered && window.innerWidth <= 900) {
+            hasAutoCentered = true;
+            setTimeout(() => {
+              scrollToCard(1, true);
+              updateActiveCard();
+            }, 180);
+          }
+        });
+      }, { threshold: 0.15 });
+      sectionObserver.observe(packagesSection);
+    }
+
+    let scrollDebounce;
+    grid.addEventListener('scroll', () => {
+      clearTimeout(scrollDebounce);
+      scrollDebounce = setTimeout(updateActiveCard, 35);
+      updateActiveCard();
+    }, { passive: true });
+
+    dots.forEach((dot, i) => {
+      dot.addEventListener('click', () => {
+        scrollToCard(i, true);
+      });
+    });
+
+    window.addEventListener('resize', () => {
+      if (window.innerWidth <= 900) {
+        updateActiveCard();
+      }
+    }, { passive: true });
+
+    // Estado inicial no mobile
+    if (window.innerWidth <= 900) {
+      cards[1]?.classList.add('is-active');
+    }
+  })();
 
   // ══════════════════════════════════════════════════════════
   // CINEMATIC EYE-REVEAL HERO SCROLL ENGINE
